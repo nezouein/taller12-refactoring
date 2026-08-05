@@ -5,7 +5,6 @@ public class EmpleadoTemporario extends Empleado {
     public EmpleadoTemporario(String nombre, double salarioBase, int horasTrabajadas, String departamento, int mesesContrato, String genero) {
         super(nombre, salarioBase, horasTrabajadas, 0, departamento);
         this.mesesContrato = mesesContrato;
-        this.genero = genero;
     }
 
     @Override
@@ -16,6 +15,14 @@ public class EmpleadoTemporario extends Empleado {
     @Override
     protected void imprimirDetallesEspecificos() {
         System.out.println("Meses de contrato: " + mesesContrato);
+    }
+
+    public int getMesesContrato() {
+        return mesesContrato;
+    }
+
+    public void setMesesContrato(int mesesContrato) {
+        this.mesesContrato = mesesContrato;
     }
 
     // Más metodos

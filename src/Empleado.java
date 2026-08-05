@@ -2,17 +2,19 @@ public class Empleado {
     private String nombre;
     private double salarioBase;
     private int horasTrabajadas;
-    private String departamento;
+    private Departamento departamento;
     private double tarifaHora;
+    private String genero;
 
     public Empleado(){}
     public Empleado(String nombre, double salarioBase, int horasTrabajadas, double tarifaHora, String departamento) {
-        this.nombre = nombre;
-        this.salarioBase = salarioBase;
-        this.horasTrabajadas = horasTrabajadas;
-        this.tarifaHora = tarifaHora;
-        this.departamento = departamento;
+    this.nombre = nombre;
+    this.salarioBase = salarioBase;
+    this.horasTrabajadas = horasTrabajadas;
+    this.tarifaHora = tarifaHora;
+    this.departamento = DepartamentoFactory.crear(departamento);
     }
+
 
     public double calcularSalario() {
         validarDatos();
@@ -41,14 +43,7 @@ public class Empleado {
     }
 
     private double calcularBonificacionDepartamento() {
-        switch (departamento) {
-            case "Sistemas":
-                return 20;
-            case "Contabilidad":
-                return 10;
-            default:
-                return 0;
-        }
+    return departamento.calcularBono();
     }
 
     public String getNombre() {
@@ -84,11 +79,27 @@ public class Empleado {
     }
 
     public String getDepartamento() {
-        return departamento;
+    return departamento.getNombre();
     }
 
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
+public void setDepartamento(String departamento) {
+    this.departamento = DepartamentoFactory.crear(departamento);
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public void imprimirDetalles() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Genero: " + genero);
+        System.out.println("Salario: " + salarioBase);
+        System.out.println("Horas trabajadas: " + horasTrabajadas);
+        System.out.println("Departamento: " + departamento);
     }
 
     public void imprimirDetalles() {
