@@ -7,11 +7,6 @@ public class EmpleadoFijo extends Empleado {
     }
 
     @Override
-    protected String getGenero() {
-        return genero;
-    }
-
-    @Override
     protected void imprimirDetallesEspecificos() {
         System.out.println("bonoAnual: " + bonoAnual);
     }

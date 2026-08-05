@@ -6,30 +6,39 @@ public class Empleado {
     private double tarifaHora;
     private String genero;
 
-    public Empleado(){}
+    public Empleado() {}
+
     public Empleado(String nombre, double salarioBase, int horasTrabajadas, double tarifaHora, String departamento) {
-    this.nombre = nombre;
-    this.salarioBase = salarioBase;
-    this.horasTrabajadas = horasTrabajadas;
-    this.tarifaHora = tarifaHora;
-    this.departamento = DepartamentoFactory.crear(departamento);
+        this(nombre, salarioBase, horasTrabajadas, tarifaHora, departamento, "");
+    }
+
+    public Empleado(String nombre, double salarioBase, int horasTrabajadas, double tarifaHora, String departamento, String genero) {
+        this.nombre = nombre;
+        this.salarioBase = salarioBase;
+        this.horasTrabajadas = horasTrabajadas;
+        this.tarifaHora = tarifaHora;
+        this.departamento = DepartamentoFactory.crear(departamento);
+        this.genero = genero;
     }
 
 
     public double calcularSalario() {
         validarDatos();
-
-        double salarioTotal = salarioBase;
-        salarioTotal += calcularPagoHorasExtra();
-        salarioTotal += calcularBonificacionDepartamento();
-
-        return salarioTotal;
+        return salarioBase + calcularPagoHorasExtra() + calcularBonificacionDepartamento();
     }
 
     private void validarDatos() {
+        validarSalarioBase();
+        validarHorasTrabajadas();
+    }
+
+    private void validarSalarioBase() {
         if (salarioBase <= 0) {
             throw new IllegalArgumentException("El salario debe ser mayor o igual a 0");
         }
+    }
+
+    private void validarHorasTrabajadas() {
         if (horasTrabajadas < 0) {
             throw new IllegalArgumentException("Las horas trabajadas deben ser mayor o igual a 0");
         }
@@ -82,8 +91,8 @@ public class Empleado {
     return departamento.getNombre();
     }
 
-public void setDepartamento(String departamento) {
-    this.departamento = DepartamentoFactory.crear(departamento);
+    public void setDepartamento(String departamento) {
+        this.departamento = DepartamentoFactory.crear(departamento);
     }
 
     public String getGenero() {
@@ -95,24 +104,16 @@ public void setDepartamento(String departamento) {
     }
 
     public void imprimirDetalles() {
+        imprimirDetallesBasicos();
+        imprimirDetallesEspecificos();
+    }
+
+    private void imprimirDetallesBasicos() {
         System.out.println("Nombre: " + nombre);
         System.out.println("Genero: " + genero);
         System.out.println("Salario: " + salarioBase);
         System.out.println("Horas trabajadas: " + horasTrabajadas);
-        System.out.println("Departamento: " + departamento);
-    }
-
-    public void imprimirDetalles() {
-        System.out.println("Nombre: " + getNombre());
-        System.out.println("Genero: " + getGenero());
-        System.out.println("Salario: " + getSalarioBase());
-        System.out.println("Horas trabajadas: " + getHorasTrabajadas());
-        System.out.println("Departamento: " + getDepartamento());
-        imprimirDetallesEspecificos();
-    }
-
-    protected String getGenero() {
-        return "";
+        System.out.println("Departamento: " + departamento.getNombre());
     }
 
     protected void imprimirDetallesEspecificos() {

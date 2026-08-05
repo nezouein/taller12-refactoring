@@ -17,6 +17,9 @@ public class Empresa {
     }
 
     public Empleado buscarEmpleadoPorNombre(String nombre) {
+        if (nombre == null) {
+            return null;
+        }
         for (Empleado empleado : empleados) {
             if (empleado.getNombre().equals(nombre)) {
                 return empleado;
@@ -28,11 +31,15 @@ public class Empresa {
     public List<Empleado> obtenerEmpleadosPorHorasTrabajadasaPartirDe(int horas) {
         List<Empleado> empleadosPorTipo = new ArrayList<>();
         for (Empleado empleado : empleados) {
-            if (empleado.getHorasTrabajadas()>horas) {
-                empleadosPorTipo.add(empleado);
-            }
+            agregarEmpleadoSiTieneHorasSuficientes(empleadosPorTipo, empleado, horas);
         }
         return empleadosPorTipo;
+    }
+
+    private void agregarEmpleadoSiTieneHorasSuficientes(List<Empleado> lista, Empleado empleado, int horas) {
+        if (empleado.getHorasTrabajadas() > horas) {
+            lista.add(empleado);
+        }
     }
 
     // Más metodos

@@ -6,11 +6,6 @@ public class EmpleadoPorHoras extends Empleado {
     }
 
     @Override
-    protected String getGenero() {
-        return genero;
-    }
-
-    @Override
     public double calcularSalario() {
         return super.getHorasTrabajadas() * super.getTarifaHora();
     }
