@@ -7,17 +7,13 @@ public class EmpleadoFijo extends Empleado {
     }
 
     @Override
-    public void imprimirDetalles() {
-        super.imprimirDetalles();
-        System.out.println("Bono Anual: " + bonoAnual);
+    protected String getGenero() {
+        return genero;
     }
 
-    public double getBonoAnual() {
-        return bonoAnual;
-    }
-
-    public void setBonoAnual(double bonoAnual) {
-        this.bonoAnual = bonoAnual;
+    @Override
+    protected void imprimirDetallesEspecificos() {
+        System.out.println("bonoAnual: " + bonoAnual);
     }
 
     // Más metodos

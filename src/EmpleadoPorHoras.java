@@ -5,7 +5,10 @@ public class EmpleadoPorHoras extends Empleado {
         super.setSalarioBase(calcularSalario());
     }
 
-
+    @Override
+    protected String getGenero() {
+        return genero;
+    }
 
     @Override
     public double calcularSalario() {
