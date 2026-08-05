@@ -2,17 +2,18 @@ public class Empleado {
     private String nombre;
     private double salarioBase;
     private int horasTrabajadas;
-    private String departamento;
+    private Departamento departamento;
     private double tarifaHora;
 
     public Empleado(){}
     public Empleado(String nombre, double salarioBase, int horasTrabajadas, double tarifaHora, String departamento) {
-        this.nombre = nombre;
-        this.salarioBase = salarioBase;
-        this.horasTrabajadas = horasTrabajadas;
-        this.tarifaHora = tarifaHora;
-        this.departamento = departamento;
+    this.nombre = nombre;
+    this.salarioBase = salarioBase;
+    this.horasTrabajadas = horasTrabajadas;
+    this.tarifaHora = tarifaHora;
+    this.departamento = DepartamentoFactory.crear(departamento);
     }
+
 
     public double calcularSalario() {
         validarDatos();
@@ -41,14 +42,7 @@ public class Empleado {
     }
 
     private double calcularBonificacionDepartamento() {
-        switch (departamento) {
-            case "Sistemas":
-                return 20;
-            case "Contabilidad":
-                return 10;
-            default:
-                return 0;
-        }
+    return departamento.calcularBono();
     }
 
     public String getNombre() {
@@ -84,12 +78,11 @@ public class Empleado {
     }
 
     public String getDepartamento() {
-        return departamento;
+    return departamento.getNombre();
     }
 
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
+public void setDepartamento(String departamento) {
+    this.departamento = DepartamentoFactory.crear(departamento);
     }
 
-    // Más metodos
 }
