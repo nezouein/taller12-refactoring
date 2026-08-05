@@ -4,6 +4,7 @@ public class Empleado {
     private int horasTrabajadas;
     private Departamento departamento;
     private double tarifaHora;
+    private String genero;
 
     public Empleado(){}
     public Empleado(String nombre, double salarioBase, int horasTrabajadas, double tarifaHora, String departamento) {
@@ -85,4 +86,21 @@ public void setDepartamento(String departamento) {
     this.departamento = DepartamentoFactory.crear(departamento);
     }
 
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public void imprimirDetalles() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Genero: " + genero);
+        System.out.println("Salario: " + salarioBase);
+        System.out.println("Horas trabajadas: " + horasTrabajadas);
+        System.out.println("Departamento: " + departamento);
+    }
+
+    // Más metodos
 }
