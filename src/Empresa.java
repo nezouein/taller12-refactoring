@@ -16,6 +16,15 @@ public class Empresa {
         empleados.remove(empleado);
     }
 
+    public Empleado buscarEmpleadoPorNombre(String nombre) {
+        for (Empleado empleado : empleados) {
+            if (empleado.getNombre().equals(nombre)) {
+                return empleado;
+            }
+        }
+        return null;
+    }
+
     public List<Empleado> obtenerEmpleadosPorHorasTrabajadasaPartirDe(int horas) {
         List<Empleado> empleadosPorTipo = new ArrayList<>();
         for (Empleado empleado : empleados) {

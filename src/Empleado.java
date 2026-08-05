@@ -91,5 +91,22 @@ public class Empleado {
         this.departamento = departamento;
     }
 
+    public void imprimirDetalles() {
+        System.out.println("Nombre: " + getNombre());
+        System.out.println("Genero: " + getGenero());
+        System.out.println("Salario: " + getSalarioBase());
+        System.out.println("Horas trabajadas: " + getHorasTrabajadas());
+        System.out.println("Departamento: " + getDepartamento());
+        imprimirDetallesEspecificos();
+    }
+
+    protected String getGenero() {
+        return "";
+    }
+
+    protected void imprimirDetallesEspecificos() {
+        // Subclases pueden agregar detalles adicionales
+    }
+
     // Más metodos
 }
